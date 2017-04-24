@@ -11,4 +11,4 @@ ADD conf/default.tmpl /opt/default.tmpl
 
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
-CMD dockerize -template /opt/default.tmpl:/etc/nginx/conf.d/default.conf -stdout /var/log/nginx/access.log -stderr /var/log/nginx/error.log nginx
+CMD envsubst '$$DOCUMENT_ROOT $$INDEX_FILE $$CLIENT_MAX_BODY_SIZE $$PHP_FPM' < /opt/default.tmpl > /etc/nginx/conf.d/default.conf && nginx

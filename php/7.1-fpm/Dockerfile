@@ -53,4 +53,4 @@ RUN docker-php-ext-install mcrypt \
 
 ADD conf/uploads.tmpl /opt/uploads.tmpl
 
-CMD /bin/bash -c "envsubst < /opt/uploads.tmpl > /usr/local/etc/php/conf.d/uploads.ini && php-fpm"
+CMD envsubst < /opt/uploads.tmpl > /usr/local/etc/php/conf.d/uploads.ini && php-fpm
