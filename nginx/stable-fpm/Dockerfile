@@ -11,4 +11,4 @@ ADD conf/default.tmpl /opt/default.tmpl
 
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
-CMD /bin/bash -c "envsubst < /opt/default.tmpl > /etc/nginx/conf.d/default.conf && nginx"
+CMD dockerize -template /opt/default.tmpl:/etc/nginx/conf.d/default.conf -stdout /var/log/nginx/access.log -stderr /var/log/nginx/error.log nginx
