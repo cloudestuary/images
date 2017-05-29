@@ -43,4 +43,10 @@ RUN docker-php-ext-install mcrypt \
   # Install the PHP zip extention
   && docker-php-ext-install zip
 
-CMD envsubst < /opt/uploads.tmpl > /usr/local/etc/php/conf.d/uploads.ini && php-fpm
+ADD conf/uploads.tmpl /opt/uploads.tmpl
+
+COPY docker-entrypoint.sh /usr/local/bin/
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+CMD php-fpm
